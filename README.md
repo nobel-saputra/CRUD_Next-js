@@ -251,7 +251,8 @@ Contributions are welcome\! If you'd like to contribute to this project, please 
 ## License
 
 This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
-*(If you don't have a `LICENSE` file in your repository, you can remove this line or create one.)*
+
 
 ```
+https://github.com/nobel-saputra
 ```
