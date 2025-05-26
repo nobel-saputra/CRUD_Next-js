@@ -76,8 +76,9 @@ Follow these steps to get the application up and running on your local machine.
 Open your terminal and clone this repository:
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
-cd frontend # Navigate into the Next.js project directory (adjust if your folder name is different)
+git clone https://github.com/nobel-saputra/CRUD_Next-js
+cd frontend
+# Navigate into the Next.js project directory (adjust if your folder name is different)
 ````
 
 *(Replace `<YOUR_REPOSITORY_URL>` with the actual URL of your Git repository.)*
