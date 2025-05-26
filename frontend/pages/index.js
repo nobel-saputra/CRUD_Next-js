@@ -1,7 +1,6 @@
-// frontend/pages/index.js
 import { useState, useEffect } from "react";
 
-const API_BASE_URL = "http://localhost:5000/api/items"; // Ganti jika port backend berbeda
+const ITEMS_API_ENDPOINT = "/api/items"; // Sudah benar, ini adalah base path untuk API kita
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -12,7 +11,12 @@ export default function Home() {
   // Fungsi untuk mengambil semua item dari backend
   const fetchItems = async () => {
     try {
-      const response = await fetch(API_BASE_URL);
+      // PERBAIKAN: Menggunakan ITEMS_API_ENDPOINT
+      const response = await fetch(ITEMS_API_ENDPOINT);
+      if (!response.ok) {
+        // Tambahkan cek status OK untuk penanganan error yang lebih baik
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setItems(data);
     } catch (error) {
@@ -41,7 +45,8 @@ export default function Home() {
     if (editingItem) {
       // Logika UPDATE
       try {
-        const response = await fetch(`${API_BASE_URL}/${editingItem.id}`, {
+        // PERBAIKAN: Menggunakan ITEMS_API_ENDPOINT
+        const response = await fetch(`${ITEMS_API_ENDPOINT}/${editingItem.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +59,7 @@ export default function Home() {
           setEditingItem(null); // Selesai mengedit
           fetchItems(); // Refresh daftar item
         } else {
-          console.error("Failed to update item");
+          console.error("Failed to update item:", response.status, await response.text()); // Tambahkan detail error
         }
       } catch (error) {
         console.error("Error updating item:", error);
@@ -62,7 +67,8 @@ export default function Home() {
     } else {
       // Logika CREATE
       try {
-        const response = await fetch(API_BASE_URL, {
+        // PERBAIKAN: Menggunakan ITEMS_API_ENDPOINT
+        const response = await fetch(ITEMS_API_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +80,7 @@ export default function Home() {
           setNewItemDescription("");
           fetchItems(); // Refresh daftar item
         } else {
-          console.error("Failed to add item");
+          console.error("Failed to add item:", response.status, await response.text()); // Tambahkan detail error
         }
       } catch (error) {
         console.error("Error adding item:", error);
@@ -95,14 +101,15 @@ export default function Home() {
       return;
     }
     try {
-      const response = await fetch(`${API_BASE_URL}/${id}`, {
+      // PERBAIKAN: Menggunakan ITEMS_API_ENDPOINT
+      const response = await fetch(`${ITEMS_API_ENDPOINT}/${id}`, {
         method: "DELETE",
       });
       if (response.status === 204) {
         // 204 No Content for successful deletion
         fetchItems(); // Refresh daftar item
       } else {
-        console.error("Failed to delete item");
+        console.error("Failed to delete item:", response.status, await response.text()); // Tambahkan detail error
       }
     } catch (error) {
       console.error("Error deleting item:", error);
