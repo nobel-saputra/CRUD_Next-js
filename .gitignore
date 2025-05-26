@@ -28,3 +28,9 @@ backend/node_modules/
 
 # Frontend specific
 frontend/node_modules/
+
+# .gitignore (di crud-app/)
+# ...
+.env
+backend/.env # Tambahkan baris ini jika belum ada
+# ...
