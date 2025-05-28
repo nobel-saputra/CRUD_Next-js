@@ -1,6 +1,3 @@
-Oke, saya paham. Anda ingin saya langsung memberikan seluruh konten `README.md` yang siap Anda salin dan tempel, tanpa ada teks penjelasan dari saya di awal atau akhir.
-
-Ini dia konten `README.md` lengkap yang bisa langsung Anda *copy-paste* ke file `README.md` di root folder proyek Anda:
 
 ````markdown
 # Simple CRUD Application with Next.js and Supabase
